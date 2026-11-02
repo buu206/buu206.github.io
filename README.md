@@ -2,6 +2,22 @@
 
 无需安装依赖的静态网站，包含产品探索、随笔、个人介绍和联系区域，适配手机与电脑。
 
+**在线访问：[田羽峰 · AI 产品经理](https://buu206.github.io/)**
+
+源码仓库：[buu206/buu206.github.io](https://github.com/buu206/buu206.github.io)
+
+## 更新与发布
+
+修改 `dist/` 中的网页文件后，提交并推送到 `main` 分支，GitHub Actions 会自动将 `dist/` 部署到 GitHub Pages。仓库中的文档和托管配置不会作为网站内容发布。
+
+```sh
+git add dist
+git commit -m "Update website content"
+git push origin main
+```
+
+可以在仓库的 Actions 页面查看部署进度。GitHub Pages 为公开网站，访客无需登录 ChatGPT。
+
 ## 本地预览
 
 在本目录运行：
