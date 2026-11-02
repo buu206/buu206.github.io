@@ -36,6 +36,8 @@ python3 -m http.server 4173 --directory dist
 - `dist/assets/`：浏览器图标与历史版本视觉素材。当前个人卡片与收起状态的小头像使用本人提供的 `tian-yufeng-avatar.jpg` 原图，裁切通过 CSS 完成。
 - `VISUALS.md`：旧版 AI 配图的生成记录；当前页面不引用该图。
 
-姓名「田羽峰」与职业「AI 产品经理」由本人提供。概念项目与示例随笔均有明确标注，已提供原文的文章直接跳转至对应链接；邮箱等其他联系方式待补充。替换真实内容时，请同步修改卡片与详情，并更新对应示例标识。
+姓名「田羽峰」与职业「AI 产品经理」由本人提供。开源项目与概念项目按实际情况标注，文章直接跳转至本人提供的公众号链接；邮箱等其他联系方式待补充。替换真实内容时，请同步修改卡片与详情，并更新对应示例标识。
 
 显示标题使用设备内置的宋体，正文使用本地无衬线字体。所有资源均为本地文件，无第三方字体或图片请求。页面可通过 #about、#product、#tool、#notes、#contact 直接访问；浏览器前进和后退可还原页面。按 ⌘K 或 Ctrl+K 搜索页面、文章和项目；支持方向键选择、Enter 打开、Esc 关闭。产品分类、文章摘要展开、详情阅读、侧栏收起与复制主页链接均已实现。
+
+Landscape Sketch 项目名称、介绍及儿童游乐园日景图来自 [buu206/landscape-sketch-skill](https://github.com/buu206/landscape-sketch-skill) 的 README，图片原路径为 `docs/assets/playground-day-marker.jpg`，以 MIT License 开源；本地展示资源为 `dist/assets/landscape-sketch-day.jpg`。三篇文章均链接至本人提供的公众号原文。

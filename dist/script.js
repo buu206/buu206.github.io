@@ -2,11 +2,11 @@
 
 const content = {
   knowledge: {
-    category: 'PRODUCT EXPLORATION / 001',
-    label: '概念项目 · AI 产品 / 知识管理',
-    title: '拾光 · AI 知识工作台',
-    description: '让收藏的知识，成为下一次思考的起点。',
-    body: '<div class="detail-notice"><strong>概念展示</strong><br>这是用于展示网站布局的产品构想，不代表田羽峰的真实项目或工作成果。</div><h3>从什么问题出发？</h3><p>收藏的文章越来越多，却很难在需要时找到它们。比起继续增加收藏入口，值得探索的是：如何让已有的材料参与下一次思考？</p><h3>一个可能的产品方向</h3><ul><li>把笔记、摘录与资料放在同一个空间，用自然语言找回相关内容。</li><li>在生成的回答旁保留原文出处，让使用者能核对和继续阅读。</li><li>把新的问题和已有材料连接，帮助整理思路，而不替代独立判断。</li></ul><h3>如何验证这个想法？</h3><p>从一个小场景开始：让使用者带着真实问题，在自己的材料中完成一次检索和整理。观察是否找到了可靠依据，以及下一次是否还愿意使用。</p>'
+    category: 'OPEN SOURCE / 001',
+    label: 'Agent Skill · 景观可视化',
+    title: 'Landscape Sketch · 景观手绘 Skill',
+    description: '将景观设计想法整理成图像模型可用的提示词。',
+    body: '<h3>从设计想法到图像提示词</h3><p>输出英文提示词、中文说明、可调参数与图纸检查清单，适用于公园、广场、滨水空间、庭院、街道及儿童游乐场的概念表达。</p><h3>支持的工作流</h3><ul><li>彩色平面图、手绘透视与鸟瞰、剖面与立面、概念分析图。</li><li>固定空间布局，调整四季植物与时段氛围。</li><li>马克笔、水彩淡彩与写实渲染风格。</li></ul><p>Skill 本身提供提示词，不包含 API 调用脚本；生成图片需要宿主提供图像工具。AI 图用于概念表达，不能直接作为施工图。</p><a class="inline-link" href="https://github.com/buu206/landscape-sketch-skill" target="_blank" rel="noopener noreferrer">查看 GitHub 项目 ↗</a>'
   },
   workflow: {
     category: 'PRODUCT EXPLORATION / 002',
@@ -38,10 +38,10 @@ const content = {
   },
   small: {
     category: 'NOTES & THOUGHTS / 003',
-    label: '创造与实践 · 示例随笔',
-    title: '先做一个小东西，再把它做得更好',
-    description: '关于从想法到第一次真实反馈的距离。',
-    body: '<div class="detail-notice">以下为网站的示例文章，供展示阅读体验，后续可替换为田羽峰的原创内容。</div><h3>把第一步缩小一点</h3><p>一个想法如果始终停在脑海里，很容易越长越大。把它做成可以被看见、被使用的小东西，才会遇到那些想象里没有的细节。</p><h3>让原型只回答一个问题</h3><p>它可以只是一个可点击的页面，一段手动跑通的流程，或一次由人协助完成的服务。关键是明确这次希望知道什么，而不是让原型看起来具备所有能力。</p><h3>观察行动，再听解释</h3><p>“这个想法不错”还不足以说明产品有用。更值得留意的是：使用者会在什么时候主动打开它？在哪里停住？下一次遇到同样的任务时，会不会再次选择它？</p><p>做小不是为了降低要求，而是为了更早获得能改变方向的证据。</p>'
+    label: 'AI 产品 · 公众号文章',
+    title: '系统提示词，其实就是写给AI的PRD',
+    description: '阅读公众号原文。',
+    body: '<a href="https://mp.weixin.qq.com/s/QqcKhCSQw93n_OK1ipQWBA" target="_blank" rel="noopener noreferrer">阅读公众号原文 ↗</a>'
   }
 };
 
@@ -121,7 +121,7 @@ document.querySelector('.polaroid').addEventListener('click', event => {
   ], {duration:750,easing:'ease-in-out'});
 });
 
-const articleLinks = {problem:'https://mp.weixin.qq.com/s/FZ6ikyZfcFKVSd_QdACczA',experience:'https://mp.weixin.qq.com/s/9V9A3rPhE8edlX4A97FhrQ'};
+const articleLinks = {problem:'https://mp.weixin.qq.com/s/FZ6ikyZfcFKVSd_QdACczA',experience:'https://mp.weixin.qq.com/s/9V9A3rPhE8edlX4A97FhrQ',small:'https://mp.weixin.qq.com/s/QqcKhCSQw93n_OK1ipQWBA'};
 const detailDialog = document.querySelector('.detail-dialog');
 let previousDetailFocus = null;
 function openDetail(key, trigger = document.activeElement) {
@@ -191,12 +191,12 @@ const searchRecords = [
   {label:'工具索引',subtitle:'页面 · 工具与公开资源',keywords:'tool 工具 pi github',icon:'tool',view:'tool'},
   {label:'文章',subtitle:'页面 · 产品与体验的思考',keywords:'notes 文章 随笔 写作',icon:'note',view:'notes'},
   {label:'保持联系',subtitle:'页面 · GitHub / @buu206',keywords:'contact 联系 github 主页',icon:'mail',view:'contact'},
-  {label:'拾光 · AI 知识工作台',subtitle:'概念产品 · 知识管理',keywords:'knowledge 产品 收藏 笔记 资料',icon:'book',detail:'knowledge'},
+  {label:'Landscape Sketch · 景观手绘 Skill',subtitle:'开源项目 · 景观可视化',keywords:'knowledge landscape sketch skill 景观 手绘 提示词',icon:'book',detail:'knowledge'},
   {label:'Flow · AI 工作流画布',subtitle:'概念产品 · 工作流',keywords:'workflow flow 产品 流程 自动化',icon:'flow',detail:'workflow'},
   {label:'声间 · 自然语音交互',subtitle:'交互概念 · 语音体验',keywords:'voice 产品 对话 声音',icon:'wave',detail:'voice'},
   {label:'从一个问题开始，而不是一个模型',subtitle:'公众号文章 · 产品思考',keywords:'problem 文章 需求 场景',icon:'note',detail:'problem'},
   {label:'好的 AI 体验，应该给人留一点余地',subtitle:'公众号文章 · AI 体验',keywords:'experience 文章 信任 可控',icon:'note',detail:'experience'},
-  {label:'先做一个小东西，再把它做得更好',subtitle:'示例随笔 · 创造与实践',keywords:'small 文章 原型 反馈',icon:'note',detail:'small'},
+  {label:'系统提示词，其实就是写给AI的PRD',subtitle:'公众号文章 · AI 产品',keywords:'small 文章 系统提示词 PRD AI',icon:'note',detail:'small'},
   {label:'Pi Agent',subtitle:'工具索引 · 终端 AI Agent',keywords:'pi agent coding 编程 工具',icon:'code',view:'tool'},
   {label:'GitHub CLI',subtitle:'工具索引 · 命令行与发布',keywords:'github gh 工具 源码',icon:'github',view:'tool'}
 ];
