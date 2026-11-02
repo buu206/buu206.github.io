@@ -76,17 +76,66 @@ dialog.addEventListener('close', () => {
   previousFocus?.focus({preventScroll: true});
 });
 
-const buddyButton = document.querySelector('.buddy-button');
-const buddyGreeting = document.getElementById('buddy-greeting');
-const greetings = ['你好呀，一起创造点什么！', '一个好问题，就是新起点。', '保持好奇，今天也有新发现！', '嗨，欢迎来到我的小宇宙！'];
-let greetingIndex = 0;
-buddyButton.addEventListener('click', () => {
-  buddyGreeting.textContent = greetings[greetingIndex % greetings.length];
-  greetingIndex += 1;
-  buddyButton.classList.remove('greet');
-  requestAnimationFrame(() => buddyButton.classList.add('greet'));
+const demoTabs = [...document.querySelectorAll('[data-demo]')];
+const productNames = {knowledge:'拾光',workflow:'Flow',voice:'声间',research:'产品笔记'};
+function selectDemo(name, focus = false) {
+  demoTabs.forEach(tab => {
+    const selected = tab.dataset.demo === name;
+    tab.classList.toggle('active', selected);
+    tab.setAttribute('aria-selected', String(selected));
+    tab.tabIndex = selected ? 0 : -1;
+    if (selected && focus) tab.focus();
+  });
+  document.querySelectorAll('.demo-panel').forEach(panel => { panel.hidden = panel.id !== 'demo-' + name; });
+  document.getElementById('lab-product-name').textContent = productNames[name];
+}
+demoTabs.forEach((tab, index) => {
+  tab.addEventListener('click', () => selectDemo(tab.dataset.demo));
+  tab.addEventListener('keydown', event => {
+    let next = index;
+    if (event.key === 'ArrowRight') next = (index + 1) % demoTabs.length;
+    else if (event.key === 'ArrowLeft') next = (index + demoTabs.length - 1) % demoTabs.length;
+    else if (event.key === 'Home') next = 0;
+    else if (event.key === 'End') next = demoTabs.length - 1;
+    else return;
+    event.preventDefault();
+    selectDemo(demoTabs[next].dataset.demo, true);
+  });
 });
-buddyButton.addEventListener('animationend', () => buddyButton.classList.remove('greet'));
+
+document.getElementById('ask-example').addEventListener('click', () => {
+  const answer = document.getElementById('knowledge-answer');
+  answer.hidden = !answer.hidden;
+  document.getElementById('knowledge-documents').hidden = !answer.hidden;
+  document.getElementById('ask-example').setAttribute('aria-expanded', String(!answer.hidden));
+});
+const runButton = document.getElementById('run-workflow');
+runButton.addEventListener('click', () => {
+  document.querySelectorAll('.flow-node').forEach(node => node.classList.add('completed'));
+  document.getElementById('workflow-status').textContent = '示例流程已完成，等待你的判断与确认。';
+  runButton.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> 再运行一次';
+});
+document.getElementById('voice-example').addEventListener('click', () => {
+  const reply = document.getElementById('voice-reply');
+  reply.hidden = !reply.hidden;
+  document.getElementById('voice-example').setAttribute('aria-expanded', String(!reply.hidden));
+});
+
+const mediaCaptions = {knowledge:'01 / 拾光 · 知识工作台',workflow:'02 / Flow · 工作流画布',voice:'03 / 声间 · 自然语音交互'};
+document.querySelectorAll('[data-feature]').forEach(button => {
+  button.addEventListener('click', () => {
+    const name = button.dataset.feature;
+    document.querySelectorAll('[data-feature]').forEach(toggle => {
+      const selected = toggle === button;
+      toggle.setAttribute('aria-expanded', String(selected));
+      toggle.closest('.feature-item').classList.toggle('active', selected);
+      document.getElementById(toggle.getAttribute('aria-controls')).hidden = !selected;
+    });
+    document.querySelectorAll('[data-device]').forEach(view => { view.hidden = view.dataset.device !== name; });
+    document.querySelector('.feature-media').dataset.featureView = name;
+    document.getElementById('feature-media-caption').textContent = mediaCaptions[name];
+  });
+});
 
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
