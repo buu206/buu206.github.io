@@ -121,9 +121,14 @@ document.querySelector('.polaroid').addEventListener('click', event => {
   ], {duration:750,easing:'ease-in-out'});
 });
 
+const articleLinks = {problem:'https://mp.weixin.qq.com/s/FZ6ikyZfcFKVSd_QdACczA'};
 const detailDialog = document.querySelector('.detail-dialog');
 let previousDetailFocus = null;
 function openDetail(key, trigger = document.activeElement) {
+  if (articleLinks[key]) {
+    window.open(articleLinks[key], '_blank', 'noopener,noreferrer');
+    return;
+  }
   const item = content[key];
   if (!item) return;
   previousDetailFocus = trigger;
@@ -189,7 +194,7 @@ const searchRecords = [
   {label:'拾光 · AI 知识工作台',subtitle:'概念产品 · 知识管理',keywords:'knowledge 产品 收藏 笔记 资料',icon:'book',detail:'knowledge'},
   {label:'Flow · AI 工作流画布',subtitle:'概念产品 · 工作流',keywords:'workflow flow 产品 流程 自动化',icon:'flow',detail:'workflow'},
   {label:'声间 · 自然语音交互',subtitle:'交互概念 · 语音体验',keywords:'voice 产品 对话 声音',icon:'wave',detail:'voice'},
-  {label:'从一个问题开始，而不是一个模型',subtitle:'示例随笔 · 产品思考',keywords:'problem 文章 需求 场景',icon:'note',detail:'problem'},
+  {label:'从一个问题开始，而不是一个模型',subtitle:'公众号文章 · 产品思考',keywords:'problem 文章 需求 场景',icon:'note',detail:'problem'},
   {label:'好的 AI 体验，应该给人留一点余地',subtitle:'示例随笔 · AI 体验',keywords:'experience 文章 信任 可控',icon:'note',detail:'experience'},
   {label:'先做一个小东西，再把它做得更好',subtitle:'示例随笔 · 创造与实践',keywords:'small 文章 原型 反馈',icon:'note',detail:'small'},
   {label:'Pi Agent',subtitle:'工具索引 · 终端 AI Agent',keywords:'pi agent coding 编程 工具',icon:'code',view:'tool'},
