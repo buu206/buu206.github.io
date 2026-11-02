@@ -45,129 +45,265 @@ const content = {
   }
 };
 
-const dialog = document.querySelector('.detail-dialog');
-let previousFocus = null;
-document.querySelectorAll('[data-detail]').forEach(button => {
-  button.addEventListener('click', () => {
-    const detail = content[button.dataset.detail];
-    if (!detail) return;
-    previousFocus = button;
-    document.getElementById('dialog-category').textContent = detail.category;
-    document.getElementById('dialog-label').textContent = detail.label;
-    document.getElementById('dialog-title').textContent = detail.title;
-    document.getElementById('dialog-description').textContent = detail.description;
-    // Only the fixed, local editorial content above is inserted as markup.
-    document.getElementById('dialog-content').innerHTML = detail.body;
-    dialog.showModal();
-    dialog.scrollTop = 0;
-    document.body.classList.add('modal-open');
-  });
-});
-function closeDialog() { dialog.close(); }
-document.querySelector('.dialog-close').addEventListener('click', closeDialog);
-document.querySelector('.dialog-done').addEventListener('click', closeDialog);
-dialog.addEventListener('click', event => {
-  if (event.target !== dialog) return;
-  const box = dialog.getBoundingClientRect();
-  if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) closeDialog();
-});
-dialog.addEventListener('close', () => {
-  document.body.classList.remove('modal-open');
-  previousFocus?.focus({preventScroll: true});
-});
+const osWindow = document.getElementById('desktop-window');
+const mainPanel = document.getElementById('main-panel');
+const tabs = [...document.querySelectorAll('[data-view]')];
+const panels = [...document.querySelectorAll('.page-view')];
+const viewNames = {about:'关于我',product:'产品探索',tool:'工具索引',notes:'文章',contact:'保持联系'};
+const mobileLayout = window.matchMedia('(max-width: 800px)');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let currentView = 'about';
+let manualSidebar = null;
+let compact = false;
 
-const demoTabs = [...document.querySelectorAll('[data-demo]')];
-const productNames = {knowledge:'拾光',workflow:'Flow',voice:'声间',research:'产品笔记'};
-function selectDemo(name, focus = false) {
-  demoTabs.forEach(tab => {
-    const selected = tab.dataset.demo === name;
-    tab.classList.toggle('active', selected);
-    tab.setAttribute('aria-selected', String(selected));
-    tab.tabIndex = selected ? 0 : -1;
-    if (selected && focus) tab.focus();
-  });
-  document.querySelectorAll('.demo-panel').forEach(panel => { panel.hidden = panel.id !== 'demo-' + name; });
-  document.getElementById('lab-product-name').textContent = productNames[name];
+function setCompact(value) {
+  compact = value;
+  osWindow.classList.toggle('is-compact', compact);
+  document.getElementById('profile-details').hidden = compact;
+  document.querySelector('.compact-profile').hidden = !compact;
+  const toggle = document.getElementById('sidebar-toggle');
+  toggle.setAttribute('aria-expanded', String(!compact));
+  toggle.setAttribute('aria-label', compact ? '展开个人信息栏' : '收起个人信息栏');
 }
-demoTabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => selectDemo(tab.dataset.demo));
+function selectView(name, options = {}) {
+  if (!viewNames[name]) name = 'about';
+  currentView = name;
+  osWindow.dataset.activeView = name;
+  tabs.forEach(tab => {
+    const active = tab.dataset.view === name;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', String(active));
+    tab.tabIndex = active ? 0 : -1;
+  });
+  panels.forEach(panel => { panel.hidden = panel.id !== 'view-' + name; });
+  document.getElementById('window-path').textContent = '~/ ' + name.toUpperCase();
+  document.title = '田羽峰 · 个人 OS / ' + viewNames[name];
+  setCompact(manualSidebar === null ? name === 'notes' : manualSidebar);
+  mainPanel.scrollTop = 0;
+  if (options.updateHash !== false && location.hash !== '#' + name) history.pushState({view:name}, '', '#' + name);
+  if (mobileLayout.matches && !options.initial) window.scrollTo({top:0,behavior:'instant'});
+  if (options.focusMain) mainPanel.focus({preventScroll:true});
+}
+function locationView() {
+  const aliases = {home:'about',work:'product',writing:'notes'};
+  const name = location.hash.slice(1) || new URLSearchParams(location.search).get('view') || 'about';
+  return aliases[name] || name;
+}
+tabs.forEach((tab,index) => {
+  tab.addEventListener('click', () => selectView(tab.dataset.view));
   tab.addEventListener('keydown', event => {
     let next = index;
-    if (event.key === 'ArrowRight') next = (index + 1) % demoTabs.length;
-    else if (event.key === 'ArrowLeft') next = (index + demoTabs.length - 1) % demoTabs.length;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % tabs.length;
+    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index + tabs.length - 1) % tabs.length;
     else if (event.key === 'Home') next = 0;
-    else if (event.key === 'End') next = demoTabs.length - 1;
+    else if (event.key === 'End') next = tabs.length - 1;
     else return;
     event.preventDefault();
-    selectDemo(demoTabs[next].dataset.demo, true);
+    selectView(tabs[next].dataset.view);
+    tabs[next].focus({preventScroll:true});
   });
 });
+document.querySelectorAll('[data-jump]').forEach(button => button.addEventListener('click', () => selectView(button.dataset.jump, {focusMain:true})));
+document.querySelector('.os-logo').addEventListener('click', event => { event.preventDefault(); selectView('about'); });
+window.addEventListener('popstate', () => selectView(locationView(), {updateHash:false}));
+window.addEventListener('hashchange', () => selectView(locationView(), {updateHash:false}));
+function updateTabOrientation() { document.querySelector('.view-tabs').setAttribute('aria-orientation', mobileLayout.matches ? 'horizontal' : 'vertical'); }
+mobileLayout.addEventListener('change', updateTabOrientation);
+updateTabOrientation();
+selectView(locationView(), {updateHash:false,initial:true});
 
-document.getElementById('ask-example').addEventListener('click', () => {
-  const answer = document.getElementById('knowledge-answer');
-  answer.hidden = !answer.hidden;
-  document.getElementById('knowledge-documents').hidden = !answer.hidden;
-  document.getElementById('ask-example').setAttribute('aria-expanded', String(!answer.hidden));
-});
-const runButton = document.getElementById('run-workflow');
-runButton.addEventListener('click', () => {
-  document.querySelectorAll('.flow-node').forEach(node => node.classList.add('completed'));
-  document.getElementById('workflow-status').textContent = '示例流程已完成，等待你的判断与确认。';
-  runButton.innerHTML = '<svg class="icon"><use href="#i-check"/></svg> 再运行一次';
-});
-document.getElementById('voice-example').addEventListener('click', () => {
-  const reply = document.getElementById('voice-reply');
-  reply.hidden = !reply.hidden;
-  document.getElementById('voice-example').setAttribute('aria-expanded', String(!reply.hidden));
+document.getElementById('sidebar-toggle').addEventListener('click', () => { manualSidebar = !compact; setCompact(manualSidebar); });
+document.querySelector('.compact-avatar').addEventListener('click', () => { manualSidebar = false; setCompact(false); });
+document.querySelector('.polaroid').addEventListener('click', event => {
+  if (!reducedMotion.matches) event.currentTarget.animate([
+    {transform:'rotate(-5deg)'},{transform:'rotate(5deg)',offset:.25},
+    {transform:'rotate(-8deg)',offset:.5},{transform:'rotate(2deg)',offset:.75},{transform:'rotate(-5deg)'}
+  ], {duration:750,easing:'ease-in-out'});
 });
 
-const mediaCaptions = {knowledge:'01 / 拾光 · 知识工作台',workflow:'02 / Flow · 工作流画布',voice:'03 / 声间 · 自然语音交互'};
-document.querySelectorAll('[data-feature]').forEach(button => {
+const detailDialog = document.querySelector('.detail-dialog');
+let previousDetailFocus = null;
+function openDetail(key, trigger = document.activeElement) {
+  const item = content[key];
+  if (!item) return;
+  previousDetailFocus = trigger;
+  document.getElementById('dialog-category').textContent = item.category;
+  document.getElementById('dialog-label').textContent = item.label;
+  document.getElementById('dialog-title').textContent = item.title;
+  document.getElementById('dialog-description').textContent = item.description;
+  // Article markup is fixed local editorial content; search input is never rendered as HTML.
+  document.getElementById('dialog-content').innerHTML = item.body;
+  detailDialog.showModal();
+  detailDialog.scrollTop = 0;
+}
+document.querySelectorAll('[data-detail]').forEach(button => button.addEventListener('click', () => openDetail(button.dataset.detail, button)));
+document.querySelector('.dialog-close').addEventListener('click', () => detailDialog.close());
+document.querySelector('.dialog-done').addEventListener('click', () => detailDialog.close());
+detailDialog.addEventListener('close', () => {
+  if (previousDetailFocus?.isConnected && !previousDetailFocus.closest('[hidden]')) previousDetailFocus.focus({preventScroll:true});
+});
+function closeOnBackdrop(dialog) {
+  dialog.addEventListener('click', event => {
+    if (event.target !== dialog) return;
+    const box = dialog.getBoundingClientRect();
+    if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
+  });
+}
+closeOnBackdrop(detailDialog);
+
+document.querySelectorAll('[data-expand-note]').forEach(button => {
   button.addEventListener('click', () => {
-    const name = button.dataset.feature;
-    document.querySelectorAll('[data-feature]').forEach(toggle => {
-      const selected = toggle === button;
-      toggle.setAttribute('aria-expanded', String(selected));
-      toggle.closest('.feature-item').classList.toggle('active', selected);
-      document.getElementById(toggle.getAttribute('aria-controls')).hidden = !selected;
+    const wasOpen = button.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('[data-expand-note]').forEach(toggle => {
+      const open = toggle === button && !wasOpen;
+      toggle.setAttribute('aria-expanded', String(open));
+      document.getElementById(toggle.getAttribute('aria-controls')).hidden = !open;
+      toggle.closest('.note-card').classList.toggle('is-open', open);
     });
-    document.querySelectorAll('[data-device]').forEach(view => { view.hidden = view.dataset.device !== name; });
-    document.querySelector('.feature-media').dataset.featureView = name;
-    document.getElementById('feature-media-caption').textContent = mediaCaptions[name];
+  });
+});
+document.querySelector('.random-note').addEventListener('click', event => {
+  const keys = ['problem','experience','small'];
+  openDetail(keys[Math.floor(Math.random() * keys.length)], event.currentTarget);
+});
+document.querySelectorAll('[data-filter]').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-filter]').forEach(filter => {
+      const active = filter === button;
+      filter.classList.toggle('active', active);
+      filter.setAttribute('aria-pressed', String(active));
+    });
+    document.querySelectorAll('.product-card').forEach(card => { card.hidden = button.dataset.filter !== 'all' && card.dataset.category !== button.dataset.filter; });
   });
 });
 
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav');
-function setMenu(open) {
-  menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? '关闭导航' : '打开导航');
-  nav.classList.toggle('open', open);
-}
-menuToggle.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
-document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => setMenu(false)));
-document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
-document.addEventListener('click', event => { if (!event.target.closest('.header')) setMenu(false); });
-window.matchMedia('(max-width: 620px)').addEventListener('change', () => setMenu(false));
-
-const sections = [...document.querySelectorAll('main > section[id], .notes-section[id]')];
-let scheduled = false;
-function updateActiveNavigation() {
-  let current = 'home';
-  const threshold = window.innerHeight * .38;
-  for (const section of sections) {
-    if (section.getBoundingClientRect().top <= threshold) current = section.id;
-  }
-  document.querySelectorAll('.nav-link').forEach(link => {
-    const active = link.hash === '#' + current;
-    link.classList.toggle('active', active);
-    if (active) link.setAttribute('aria-current', 'location');
-    else link.removeAttribute('aria-current');
+const searchDialog = document.querySelector('.search-dialog');
+const queryInput = document.getElementById('command-query');
+const commandList = document.getElementById('command-results');
+const searchRecords = [
+  {label:'关于我',subtitle:'页面 · 田羽峰 / AI 产品经理',keywords:'about 个人 简介 姓名',icon:'user',view:'about'},
+  {label:'产品探索',subtitle:'页面 · 三个产品概念',keywords:'product 作品 项目',icon:'cube',view:'product'},
+  {label:'工具索引',subtitle:'页面 · 工具与公开资源',keywords:'tool 工具 pi github',icon:'tool',view:'tool'},
+  {label:'文章',subtitle:'页面 · 产品与体验的思考',keywords:'notes 文章 随笔 写作',icon:'note',view:'notes'},
+  {label:'保持联系',subtitle:'页面 · GitHub / @buu206',keywords:'contact 联系 github 主页',icon:'mail',view:'contact'},
+  {label:'拾光 · AI 知识工作台',subtitle:'概念产品 · 知识管理',keywords:'knowledge 产品 收藏 笔记 资料',icon:'book',detail:'knowledge'},
+  {label:'Flow · AI 工作流画布',subtitle:'概念产品 · 工作流',keywords:'workflow flow 产品 流程 自动化',icon:'flow',detail:'workflow'},
+  {label:'声间 · 自然语音交互',subtitle:'交互概念 · 语音体验',keywords:'voice 产品 对话 声音',icon:'wave',detail:'voice'},
+  {label:'从一个问题开始，而不是一个模型',subtitle:'示例随笔 · 产品思考',keywords:'problem 文章 需求 场景',icon:'note',detail:'problem'},
+  {label:'好的 AI 体验，应该给人留一点余地',subtitle:'示例随笔 · AI 体验',keywords:'experience 文章 信任 可控',icon:'note',detail:'experience'},
+  {label:'先做一个小东西，再把它做得更好',subtitle:'示例随笔 · 创造与实践',keywords:'small 文章 原型 反馈',icon:'note',detail:'small'},
+  {label:'Pi Agent',subtitle:'工具索引 · 终端 AI Agent',keywords:'pi agent coding 编程 工具',icon:'code',view:'tool'},
+  {label:'GitHub CLI',subtitle:'工具索引 · 命令行与发布',keywords:'github gh 工具 源码',icon:'github',view:'tool'}
+];
+let filteredRecords = [];
+let activeResult = 0;
+let previousSearchFocus = null;
+function setActiveResult(index) {
+  if (!filteredRecords.length) { queryInput.removeAttribute('aria-activedescendant'); return; }
+  activeResult = (index + filteredRecords.length) % filteredRecords.length;
+  [...commandList.querySelectorAll('.command-result')].forEach((option,i) => {
+    option.classList.toggle('active', i === activeResult);
+    option.setAttribute('aria-selected', String(i === activeResult));
   });
-  scheduled = false;
+  const option = document.getElementById('command-option-' + activeResult);
+  queryInput.setAttribute('aria-activedescendant', option.id);
+  option.scrollIntoView({block:'nearest'});
 }
-window.addEventListener('scroll', () => {
-  if (!scheduled) { scheduled = true; requestAnimationFrame(updateActiveNavigation); }
-}, {passive: true});
-updateActiveNavigation();
+function executeResult(record) {
+  searchDialog.close();
+  if (record.detail) openDetail(record.detail, previousSearchFocus);
+  else selectView(record.view, {focusMain:true});
+}
+function renderResults() {
+  const term = queryInput.value.trim().toLowerCase().normalize('NFKC');
+  filteredRecords = term ? searchRecords.filter(record => (record.label + ' ' + record.subtitle + ' ' + record.keywords).toLowerCase().normalize('NFKC').includes(term)) : searchRecords.slice(0,8);
+  commandList.replaceChildren();
+  document.getElementById('search-result-count').textContent = term ? filteredRecords.length + ' 个结果' : '快速跳转';
+  if (!filteredRecords.length) {
+    const empty = document.createElement('p');
+    empty.className = 'search-empty';
+    empty.textContent = '暂时没有找到相关内容，试试「产品」或「文章」。';
+    commandList.append(empty);
+    queryInput.removeAttribute('aria-activedescendant');
+    return;
+  }
+  filteredRecords.forEach((record,index) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'command-result';
+    button.id = 'command-option-' + index;
+    button.setAttribute('role','option');
+    button.tabIndex = -1;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.classList.add('icon');
+    const use = document.createElementNS('http://www.w3.org/2000/svg','use');
+    use.setAttribute('href','#i-' + record.icon);
+    svg.append(use);
+    const label = document.createElement('span');
+    label.textContent = record.label;
+    const subtitle = document.createElement('small');
+    subtitle.textContent = record.subtitle;
+    label.append(subtitle);
+    const arrow = document.createElement('kbd');
+    arrow.textContent = '↵';
+    button.append(svg,label,arrow);
+    button.addEventListener('click', () => executeResult(record));
+    button.addEventListener('pointermove', () => setActiveResult(index));
+    commandList.append(button);
+  });
+  setActiveResult(0);
+}
+function openSearch(trigger = document.activeElement) {
+  previousSearchFocus = trigger;
+  if (detailDialog.open) detailDialog.close();
+  queryInput.value = '';
+  searchDialog.showModal();
+  renderResults();
+  queryInput.focus();
+}
+queryInput.setAttribute('role','combobox');
+queryInput.setAttribute('aria-autocomplete','list');
+queryInput.setAttribute('aria-expanded','true');
+commandList.setAttribute('role','listbox');
+commandList.setAttribute('aria-label','搜索结果');
+document.querySelectorAll('[data-open-search]').forEach(button => button.addEventListener('click', () => openSearch(button)));
+queryInput.addEventListener('input', renderResults);
+queryInput.addEventListener('keydown', event => {
+  if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    setActiveResult(activeResult + (event.key === 'ArrowDown' ? 1 : -1));
+  } else if (event.key === 'Enter' && filteredRecords[activeResult]) {
+    event.preventDefault();
+    executeResult(filteredRecords[activeResult]);
+  }
+});
+document.querySelector('.search-close').addEventListener('click', () => searchDialog.close());
+searchDialog.addEventListener('close', () => {
+  if (!detailDialog.open && previousSearchFocus?.isConnected) previousSearchFocus.focus({preventScroll:true});
+});
+closeOnBackdrop(searchDialog);
+document.addEventListener('keydown', event => {
+  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+    event.preventDefault();
+    if (searchDialog.open) searchDialog.close();
+    else openSearch();
+  }
+});
+
+let toastTimer;
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  clearTimeout(toastTimer);
+  toast.textContent = message;
+  toast.hidden = false;
+  toastTimer = setTimeout(() => { toast.hidden = true; }, 3000);
+}
+document.querySelectorAll('[data-copy-link]').forEach(button => button.addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText('https://buu206.github.io/');
+    showToast('主页链接已复制，期待下一次相遇。');
+  } catch {
+    showToast('请手动复制：https://buu206.github.io/');
+  }
+}));
 document.getElementById('year').textContent = new Date().getFullYear();
