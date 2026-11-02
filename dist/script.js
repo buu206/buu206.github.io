@@ -76,19 +76,17 @@ dialog.addEventListener('close', () => {
   previousFocus?.focus({preventScroll: true});
 });
 
-document.querySelectorAll('.filter').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.filter').forEach(filter => {
-      const selected = filter === button;
-      filter.classList.toggle('active', selected);
-      filter.setAttribute('aria-pressed', String(selected));
-    });
-    const category = button.dataset.filter;
-    document.querySelectorAll('.project').forEach(project => {
-      project.hidden = category !== 'all' && project.dataset.category !== category;
-    });
-  });
+const buddyButton = document.querySelector('.buddy-button');
+const buddyGreeting = document.getElementById('buddy-greeting');
+const greetings = ['你好呀，一起创造点什么！', '一个好问题，就是新起点。', '保持好奇，今天也有新发现！', '嗨，欢迎来到我的小宇宙！'];
+let greetingIndex = 0;
+buddyButton.addEventListener('click', () => {
+  buddyGreeting.textContent = greetings[greetingIndex % greetings.length];
+  greetingIndex += 1;
+  buddyButton.classList.remove('greet');
+  requestAnimationFrame(() => buddyButton.classList.add('greet'));
 });
+buddyButton.addEventListener('animationend', () => buddyButton.classList.remove('greet'));
 
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');

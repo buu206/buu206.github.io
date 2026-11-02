@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="田羽峰，AI 产品经理。在人的需求与 AI 的能力之间，探索值得被做出来的产品。">
-  <meta name="theme-color" content="#f8f7f3">
-  <meta property="og:title" content="田羽峰 — AI 产品经理">
-  <meta property="og:description" content="保持好奇，让想法发生。关于 AI、产品与创造的一小片空间。">
+  <meta name="description" content="你好，我是田羽峰，一名保持好奇的 AI 产品经理。一起探索 AI、产品和有趣的想法。">
+  <meta name="theme-color" content="#ffffff">
+  <meta property="og:title" content="田羽峰 — 把好奇，变成好产品">
+  <meta property="og:description" content="AI 产品经理田羽峰的个人空间。产品探索、思考随笔，以及一些正在发生的好想法。">
   <meta property="og:type" content="website">
-  <title>田羽峰 — AI 产品经理</title>
+  <title>田羽峰 · AI 产品经理 — 保持好奇，认真创造</title>
   <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
   <link rel="stylesheet" href="./styles.css">
   <script src="./script.js" defer></script>
@@ -16,71 +16,73 @@
 <body>
   <a class="skip-link" href="#main">跳转到主要内容</a>
   <header class="header">
-    <a class="brand" href="#home" aria-label="田羽峰，回到首页"><span class="brand-mark">羽<span>↗</span></span><span class="brand-name">田羽峰<span>TIAN YUFENG</span></span></a>
-    <nav class="nav" aria-label="主导航" id="main-nav">
-      <a class="nav-link active" href="#home">首页<span>01</span></a>
-      <a class="nav-link" href="#work">产品探索<span>02</span></a>
-      <a class="nav-link" href="#notes">思考随笔<span>03</span></a>
-      <a class="nav-link" href="#about">关于我<span>04</span></a>
-    </nav>
-    <div class="header-actions"><a class="contact-link" href="#contact">聊聊想法 <span>↗</span></a><button class="menu-toggle" aria-label="打开导航" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button></div>
+    <div class="header-inner wrap">
+      <a class="brand" href="#home" aria-label="田羽峰，回到首页"><img src="./assets/mark.svg" alt="" width="42" height="42"><span>田羽峰<span class="brand-dot">.</span></span></a>
+      <nav class="nav" id="main-nav" aria-label="主导航">
+        <a class="nav-link" href="#work">产品探索</a>
+        <a class="nav-link" href="#notes">思考随笔</a>
+        <a class="nav-link" href="#about">关于我</a>
+      </nav>
+      <div class="header-actions"><a class="button button-outline header-hello" href="#contact">打个招呼 <span aria-hidden="true">↗</span></a><button class="menu-toggle" aria-label="打开导航" aria-controls="main-nav" aria-expanded="false"><span></span><span></span><span></span></button></div>
+    </div>
   </header>
 
   <main id="main">
-    <section class="hero section-width" id="home" aria-labelledby="hero-title">
-      <div class="hero-content">
-        <div class="eyebrow"><span class="tiny-star">✳</span> 你好，我是田羽峰 <span class="intro-line"></span> AI 产品经理</div>
-        <h1 id="hero-title">保持好奇，<br>让想法<span class="hero-accent">发生<svg viewBox="0 0 300 25" aria-hidden="true"><path d="M4 17Q130 0 293 14M25 23Q157 10 271 20"/></svg></span>。</h1>
-        <p class="hero-description">在人的需求与 AI 的能力之间，<br>寻找值得被做出来的产品。</p>
-        <a class="button button-dark" href="#work">看看我的探索 <span>↗</span></a>
-        <div class="hero-footnote"><span class="status-dot"></span> THINK CLEARLY. BUILD WITH CURIOSITY.</div>
+    <section class="hero wrap" id="home" aria-labelledby="hero-title">
+      <div class="hero-art">
+        <div class="hello-bubble" aria-live="polite"><span id="buddy-greeting">嗨，欢迎来到我的小宇宙！</span><span aria-hidden="true">✦</span></div>
+        <button class="buddy-button" aria-label="和小羽打招呼"><img src="./assets/hello-buddy.svg" width="600" height="500" alt="小羽机器人挥着手，抱着蓝色电脑向你问好"></button>
+        <span class="art-hint"><span aria-hidden="true">↖</span> 戳戳小羽，打个招呼</span>
       </div>
-      <div class="hero-visual" aria-label="代表想法与技术交汇的抽象轨道插画" role="img">
-        <div class="visual-grid"></div>
-        <span class="visual-coordinate coordinate-top">FIG. 01 — A MIND IN MOTION</span>
-        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
-        <div class="orange-sphere"></div>
-        <div class="metal-star">
-          <svg viewBox="0 0 300 300" aria-hidden="true"><defs><linearGradient id="chrome" x1="0" y1="0" x2=".9" y2="1"><stop stop-color="#fffef2"/><stop offset=".3" stop-color="#d4d2bf"/><stop offset=".5" stop-color="#f8f7ea"/><stop offset=".75" stop-color="#93978b"/><stop offset="1" stop-color="#e6e7da"/></linearGradient><linearGradient id="facet" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffef8"/><stop offset="1" stop-color="#8e9385"/></linearGradient><filter id="shadow"><feDropShadow dx="8" dy="13" stdDeviation="9" flood-color="#5c6047" flood-opacity=".12"/></filter></defs><g filter="url(#shadow)"><path fill="url(#chrome)" d="M150 9 173 91 244 48 209 124 294 150 210 174 251 251 174 209 150 292 124 210 49 250 90 175 7 150 91 125 48 49 125 91Z"/><path fill="url(#facet)" d="M150 9 150 150 173 91ZM244 48 150 150 209 124ZM294 150 150 150 210 174ZM251 251 150 150 174 209ZM150 292 150 150 124 210ZM49 250 150 150 90 175ZM7 150 150 150 91 125ZM48 49 150 150 125 91Z" opacity=".68"/></g></svg>
-        </div>
-        <div class="thought-label"><span>✦</span><div>从一个「如果」开始<small>WHAT IF → WHAT'S NEXT</small></div></div>
-        <span class="orbit-point point-one"></span><span class="orbit-point point-two"></span>
-        <div class="floating-tag">Human × AI<span>↗</span></div>
-        <div class="visual-caption"><span>灵感没有边界</span><span>EXPLORING THE POSSIBLE ↗</span></div>
-        <svg class="scribble" viewBox="0 0 100 90" aria-hidden="true"><path d="M14 48Q60 5 75 29T40 64Q13 62 38 44T83 52M69 43 86 52 78 68"/></svg>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="mini-spark" aria-hidden="true">✳</span> AI PRODUCT MANAGER</div>
+        <h1 id="hero-title">你好，我是田羽峰。<br>把好奇，<br>变成<span class="green">好产品。</span></h1>
+        <p>一名持续探索的 AI 产品经理。<br>关心技术能做什么，更关心它能帮到谁。</p>
+        <div class="hero-cta"><a class="button button-primary" href="#work">一起探索 <span aria-hidden="true">↓</span></a><a class="button button-outline" href="#about">认识一下 <span aria-hidden="true">→</span></a></div>
+        <div class="hero-caption"><span class="small-check" aria-hidden="true">✓</span> 保持好奇。认真思考。动手创造。</div>
       </div>
     </section>
 
-    <div class="interest-strip"><div class="section-width"><span class="strip-label">一些持续关注的事</span><span>人工智能<span class="strip-cross">✳</span></span><span>产品设计<span class="strip-cross">✳</span></span><span>人的体验<span class="strip-cross">✳</span></span><span>从 0 到 1<span class="strip-cross">✳</span></span><span>终身学习</span></div></div>
+    <div class="interests" aria-label="关注的方向"><div class="wrap interest-inner">
+      <span class="interest-label">我的兴趣雷达</span>
+      <span class="interest"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="9" width="22" height="19" rx="7" fill="#d7ffb8" stroke="#58a615" stroke-width="2"/><path d="M16 9V5m-6 11v3m12-3v3m-9 4h6" stroke="#58a615" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="4" r="2" fill="#58cc02"/></svg>人工智能</span>
+      <span class="interest"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 6h16a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H14l-6 4v-4a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3Z" fill="#d8f3ff" stroke="#1cb0f6" stroke-width="2"/><path d="M11 12h10m-10 6h7" stroke="#1cb0f6" stroke-width="2" stroke-linecap="round"/></svg>用户体验</span>
+      <span class="interest"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m9 23 4-13 9-6 4 11-8 11Z" fill="#fff2ba" stroke="#c99a00" stroke-width="2"/><circle cx="20" cy="12" r="3" fill="white" stroke="#c99a00" stroke-width="2"/><path d="m9 23-4 4m8-1-3 4M6 20l-3 3" stroke="#e6ae00" stroke-width="2" stroke-linecap="round"/></svg>从 0 到 1</span>
+      <span class="interest"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 7q6-2 12 2 6-4 12-2v19q-6-2-12 2-6-4-12-2Z" fill="#ece2ff" stroke="#a17bde" stroke-width="2"/><path d="M16 9v19" stroke="#a17bde" stroke-width="2"/></svg>持续学习</span>
+    </div></div>
 
-    <section class="work section-width section-space" id="work" aria-labelledby="work-title">
-      <div class="section-heading"><div><div class="section-kicker"><span>01 / SELECTED EXPLORATIONS</span><span class="small-line"></span></div><h2 id="work-title">让想法，有迹可循<span class="orange">。</span></h2></div><p>从一个真实的问题出发，<br>探索 AI 产品的不同可能。</p></div>
-      <div class="work-toolbar"><div class="filters" role="group" aria-label="按产品方向筛选"><button class="filter active" data-filter="all" aria-pressed="true">全部探索 <span>03</span></button><button class="filter" data-filter="product" aria-pressed="false">AI 产品</button><button class="filter" data-filter="experiment" aria-pressed="false">交互实验</button></div><span class="demo-label"><span></span> 概念项目展示</span></div>
-      <div class="project-grid" aria-live="polite">
-        <article class="project project-featured" data-category="product">
-          <button class="project-open" data-detail="knowledge" aria-label="查看拾光：AI 知识工作台概念">
-            <div class="project-cover knowledge-cover"><span class="cover-index">EXPLORATION / 001</span><div class="knowledge-window"><div class="mock-sidebar"><span class="mock-logo">✳ 拾光</span><span class="sidebar-item current">◉ &nbsp; 我的空间</span><span class="sidebar-item">▧ &nbsp; 知识收藏</span><span class="sidebar-item">⌁ &nbsp; 灵感笔记</span><div class="sidebar-bottom"><span class="mock-avatar">羽</span>个人工作台</div></div><div class="mock-main"><div class="mock-breadcrumb">我的空间 <span>⌘ K</span></div><div class="mock-greeting">好问题，值得被记住<span>把碎片变成线索，把知识变成自己的。</span></div><div class="mock-search"><span>✳</span> 从你的知识里，找到新的灵感<span>↗</span></div><div class="mock-section-name">最近的思考 <span>查看全部 ↗</span></div><div class="mock-note-row"><div class="mock-note"><i>✦</i><b>关于 AI 的一些灵感</b><span>让想法慢慢连接起来</span><div class="mock-lines"></div></div><div class="mock-note"><i>↗</i><b>产品背后的问题</b><span>从需求到一个小小的验证</span><div class="mock-lines"></div></div></div></div></div><div class="cover-sticker">让知识<br>产生连接 <span>↗</span></div><span class="cover-bottom">KNOWLEDGE, CONNECTED.</span></div>
-            <div class="project-info"><div><div class="project-tags"><span>AI 产品</span><span>知识管理</span></div><h3>拾光 · AI 知识工作台</h3><p>让收藏的知识，成为下一次思考的起点。</p></div><span class="project-arrow">↗</span></div>
-          </button>
-        </article>
-        <article class="project" data-category="product">
-          <button class="project-open" data-detail="workflow" aria-label="查看 Flow：AI 工作流画布概念"><div class="project-cover flow-cover"><span class="cover-index">EXPLORATION / 002</span><div class="flow-title">Less busy.<br><em>More flow.</em></div><div class="flow-canvas"><svg viewBox="0 0 460 210" aria-hidden="true"><path d="M65 110H144Q170 110 170 75T201 40H265M170 75V164Q170 185 203 185H300M278 40H329Q355 40 355 92V120"/></svg><div class="flow-node node-input"><span>↗</span><div>一个想法<small>INPUT</small></div></div><div class="flow-node node-ai"><span>✳</span><div>AI 帮你想<small>MAKE IT HAPPEN</small></div></div><div class="flow-node node-result"><span>✓</span><div>新的可能<small>OUTPUT</small></div></div><span class="flow-dot"></span></div><span class="cover-bottom">CONNECT IDEAS. CREATE POSSIBILITIES.</span></div><div class="project-info"><div><div class="project-tags"><span>AI 产品</span><span>工作流</span></div><h3>Flow · AI 工作流画布</h3><p>让复杂的过程，回归直觉。</p></div><span class="project-arrow">↗</span></div></button>
-        </article>
-        <article class="project" data-category="experiment">
-          <button class="project-open" data-detail="voice" aria-label="查看声间：自然语音交互实验"><div class="project-cover voice-cover"><span class="cover-index">EXPLORATION / 003</span><div class="voice-orb"><div></div></div><div class="voice-text">好的交互，<br>像一次<span>对话。</span></div><div class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="cover-bottom">A LITTLE MORE HUMAN.</span></div><div class="project-info"><div><div class="project-tags"><span>交互实验</span><span>语音体验</span></div><h3>声间 · 自然语音交互</h3><p>不只是听懂指令，也让表达更轻松。</p></div><span class="project-arrow">↗</span></div></button>
-        </article>
-      </div>
-      <p class="work-disclaimer">以上为网站中的概念示例，可替换为真实项目与成果。</p>
+    <section class="work-section wrap" id="work" aria-labelledby="work-title">
+      <div class="section-intro"><span class="eyebrow">A LITTLE PLAYGROUND</span><h2 id="work-title">小想法，也有大可能。</h2><p>从一个「如果」出发，探索 AI 产品的不同模样。</p><span class="sample-note">以下为概念展示，真实项目持续补充中</span></div>
+      <article class="story story-knowledge">
+        <div class="story-art"><img src="./assets/knowledge-buddy.svg" width="600" height="500" alt="小羽打开一本书，让散落的笔记连接起来" loading="lazy"><span class="art-label label-knowledge">知识 + 好奇心 = 新灵感</span></div>
+        <div class="story-copy"><div class="story-meta"><span class="story-number">01</span><span>拾光 · AI 知识工作台</span><span class="concept-tag">概念</span></div><h3>收藏不吃灰，<br>知识有回响。</h3><p>好的知识管理，不止是「存下来」。让散落的笔记和资料连接起来，在你提出问题时，找到新的思考起点。</p><div class="story-tags"><span>AI 产品</span><span>知识管理</span></div><button class="button button-outline" data-detail="knowledge">看看这个想法 <span aria-hidden="true">↗</span></button></div>
+      </article>
+      <article class="story story-reversed">
+        <div class="story-art"><img src="./assets/flow-buddy.svg" width="600" height="500" alt="小羽将想法、代码和完成的任务连接成一条工作流" loading="lazy"><span class="art-label label-flow">少一点忙乱，多一点创造。</span></div>
+        <div class="story-copy"><div class="story-meta"><span class="story-number">02</span><span>Flow · AI 工作流画布</span><span class="concept-tag">概念</span></div><h3>复杂的事，<br>简单一点做。</h3><p>把一段复杂流程，拆成看得懂的小步骤。让 AI 接手重复工作，也让每一步的判断与调整，都在你的掌握之中。</p><div class="story-tags"><span>AI 产品</span><span>工作流</span></div><button class="button button-outline" data-detail="workflow">连起新的可能 <span aria-hidden="true">↗</span></button></div>
+      </article>
+      <article class="story">
+        <div class="story-art"><img src="./assets/voice-buddy.svg" width="600" height="500" alt="戴着耳机的橙色小伙伴，正在和语音助手轻松对话" loading="lazy"><span class="art-label label-voice">听见你的话，也留意你的停顿。</span></div>
+        <div class="story-copy"><div class="story-meta"><span class="story-number">03</span><span>声间 · 自然语音交互</span><span class="concept-tag">概念</span></div><h3>好交互，<br>像聊个天。</h3><p>可以停顿，可以改口，也可以想到哪儿说到哪儿。探索一种更自然的语音体验，让表达轻松一点，让技术更有温度。</p><div class="story-tags"><span>交互实验</span><span>语音体验</span></div><button class="button button-outline" data-detail="voice">听听这个点子 <span aria-hidden="true">↗</span></button></div>
+      </article>
     </section>
 
-    <section class="notes-section" id="notes" aria-labelledby="notes-title"><div class="section-width section-space"><div class="section-heading"><div><div class="section-kicker"><span>02 / NOTES & THOUGHTS</span><span class="small-line"></span></div><h2 id="notes-title">边走，边想<span class="orange">。</span></h2></div><span class="handwritten">A work in progress ↘</span></div><div class="notes-layout"><div class="notes-intro"><p>记录不成熟的想法，<br>也记录那些<br>突然想明白的瞬间。</p><span>关于 AI、产品，以及保持好奇。</span><div class="note-asterisk">✳</div></div><div class="notes-list"><button class="note-row" data-detail="problem"><span class="note-number">01</span><div><span class="note-category">产品思考 · 示例随笔</span><h3>从一个问题开始，而不是一个模型</h3><p>当所有人都在讨论能力，产品经理更该追问什么？</p></div><span class="note-arrow">↗</span></button><button class="note-row" data-detail="experience"><span class="note-number">02</span><div><span class="note-category">AI 体验 · 示例随笔</span><h3>好的 AI 体验，应该给人留一点余地</h3><p>可控感，也许和智能本身一样重要。</p></div><span class="note-arrow">↗</span></button><button class="note-row" data-detail="small"><span class="note-number">03</span><div><span class="note-category">创造与实践 · 示例随笔</span><h3>先做一个小东西，再把它做得更好</h3><p>关于从想法到第一次真实反馈的距离。</p></div><span class="note-arrow">↗</span></button></div></div></div></section>
+    <section class="notes-section" id="notes" aria-labelledby="notes-title"><div class="wrap notes-layout">
+      <div class="notes-copy"><span class="eyebrow">THINK OUT LOUD</span><h2 id="notes-title">脑子里的想法，<br>拿出来晒晒。</h2><p>关于 AI、产品和创造。<br>先记下来，再慢慢想明白。</p><div class="pencil-doodle" aria-hidden="true"><svg viewBox="0 0 220 160"><g fill="none" stroke="#263744" stroke-width="3" stroke-linejoin="round"><g transform="rotate(31 115 80)"><path d="M91 41h47v86l-24 28-23-28Z" fill="#ffc800"/><path d="M91 41V27q0-12 12-12h23q12 0 12 12v14" fill="#ffb2c1"/><path d="M91 41h47v14H91Z" fill="#e7dfff"/><path d="M91 127h47l-24 28Z" fill="#ffe8bf"/><path d="m105 144 9 11 9-11" fill="#263744"/><path d="M107 56v70m15-70v70" stroke="#dda600"/><path d="M103 83v4m24-4v4" stroke-width="4" stroke-linecap="round"/><path d="M109 96q5 5 11 0"/></g><path d="M40 137q24-24 39-9t33 5" stroke="#afafaf" stroke-linecap="round"/><path d="M169 29v16m-8-8h16M50 53v13m-6-7h12" stroke="#58cc02" stroke-linecap="round"/></g></svg><span>还在想，还在写。</span></div></div>
+      <div class="notes-list"><button class="note-row" data-detail="problem"><div class="note-row-top"><span>产品思考</span><span>示例随笔</span></div><h3>从一个问题开始，<br>而不是一个模型</h3><span class="note-read">一起想想 <span aria-hidden="true">→</span></span></button><button class="note-row" data-detail="experience"><div class="note-row-top"><span>AI 体验</span><span>示例随笔</span></div><h3>好的 AI 体验，<br>应该给人留一点余地</h3><span class="note-read">一起想想 <span aria-hidden="true">→</span></span></button><button class="note-row" data-detail="small"><div class="note-row-top"><span>创造与实践</span><span>示例随笔</span></div><h3>先做一个小东西，<br>再把它做得更好</h3><span class="note-read">一起想想 <span aria-hidden="true">→</span></span></button></div>
+    </div></section>
 
-    <section class="about section-width section-space" id="about" aria-labelledby="about-title"><div class="section-kicker"><span>03 / A LITTLE ABOUT ME</span><span class="small-line"></span></div><div class="about-layout"><div class="about-poster"><div class="poster-label">HELLO, WORLD.</div><div class="poster-name">田<br><span>羽</span>峰<span class="poster-dot">.</span></div><div class="poster-bottom"><span>AI PRODUCT MANAGER</span><span>始终保持<br>一点好奇心 ↗</span></div><div class="poster-circle"></div></div><div class="about-copy"><span class="about-eyebrow">很高兴，在这里遇见你。</span><h2 id="about-title">一个产品经理，<br>也是一个<span class="orange">探索者。</span></h2><p>我是田羽峰，一名 AI 产品经理。</p><p>这个网站是我在互联网上的一小片空间，用来整理产品探索、记录思考，也连接有意思的人与想法。</p><div class="about-principles"><div><span>01</span><p><b>从真实需求出发</b>先理解问题，再寻找合适的技术。</p></div><div><span>02</span><p><b>让复杂变得简单</b>把对技术的理解，转化为自然的体验。</p></div><div><span>03</span><p><b>保持开放，持续创造</b>通过小步实践，让想法逐渐清晰。</p></div></div><a class="text-link" href="#contact">期待下一次有趣的交流 <span>↗</span></a></div></div></section>
+    <section class="about-section wrap" id="about" aria-labelledby="about-title">
+      <div class="about-art"><img src="./assets/explorer-buddy.svg" width="600" height="500" alt="背着黄色背包的小羽，拿着指南针向新的山峰出发" loading="lazy"><span class="art-label">下一站？试过才知道。</span></div>
+      <div class="about-copy"><span class="eyebrow">A HUMAN BEHIND THE IDEAS</span><h2 id="about-title">产品经理，<br>也是好奇心选手。</h2><p>我是田羽峰，一名 AI 产品经理。这里是我在互联网上的一小片空间，用来记录探索、整理思考，也遇见有意思的人。</p><ul class="principles"><li><span aria-hidden="true">✓</span><div><strong>先懂人，再懂技术</strong><p>从真实需求出发，认真理解每一个「为什么」。</p></div></li><li><span aria-hidden="true">✓</span><div><strong>想清楚，也动手做</strong><p>用一个小小的实践，换来一次真实的反馈。</p></div></li><li><span aria-hidden="true">✓</span><div><strong>一直学，一直有趣</strong><p>给新想法留个位置，也给自己多一点可能。</p></div></li></ul></div>
+    </section>
 
-    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="section-width contact-inner"><div><div class="section-kicker"><span>04 / SAY HELLO</span><span class="small-line"></span></div><h2 id="contact-title">下一个好想法，<br>也许从一句<span>你好</span>开始。</h2><p>关于 AI 产品、创造，或是一个天马行空的想法。</p><div class="contact-detail"><span class="contact-icon">↗</span><span>期待与你连接<small>联系邮箱与社交主页待补充</small></span></div></div><div class="contact-doodle" aria-hidden="true"><svg viewBox="0 0 230 230"><path d="M30 121Q18 58 74 46T177 42Q218 59 197 132T115 193Q54 197 30 121Z"/><path d="M70 99 76 104M139 86 145 90M79 139Q118 164 151 123M26 22 15 6M196 22 216 9M213 178 230 190"/></svg><span>LET'S MAKE<br>SOMETHING GOOD.</span></div></div></section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="wrap contact-inner">
+      <div class="footer-spark spark-left" aria-hidden="true">✳</div><div class="footer-spark spark-right" aria-hidden="true">✳</div>
+      <span class="contact-eyebrow">GOOD THINGS START WITH A HELLO</span><h2 id="contact-title">下一个好想法，<br>从一句「你好」开始。</h2><p>聊聊 AI，聊聊产品，或者一个还没成形的点子。</p><a class="button button-white" href="#work">再逛逛我的探索 <span aria-hidden="true">↑</span></a><div class="contact-pending"><span aria-hidden="true">✉</span> 联系邮箱与社交主页，正在整理中。</div>
+    </div><footer class="footer wrap"><a class="footer-brand" href="#home">田羽峰<span>保持好奇，认真创造。</span></a><nav aria-label="页脚导航"><a href="#work">产品探索</a><a href="#notes">思考随笔</a><a href="#about">关于我</a></nav><span class="copyright">© <span id="year">2026</span> TIAN YUFENG</span></footer></section>
   </main>
-  <footer class="footer section-width"><a class="footer-brand" href="#home">田羽峰<span>保持好奇，让想法发生。</span></a><span class="copyright">© <span id="year">2026</span> TIAN YUFENG</span><a class="back-top" href="#home">回到顶部 <span>↑</span></a></footer>
 
-  <dialog class="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-category"></span><button class="dialog-close" aria-label="关闭详情">✕</button></div><div class="dialog-body"><p id="dialog-label" class="dialog-label"></p><h2 id="dialog-title"></h2><p id="dialog-description" class="dialog-description"></p><div id="dialog-content"></div></div><div class="dialog-bottom"><span>田羽峰 · AI 产品经理</span><button class="dialog-done">读完了 <span>↗</span></button></div></dialog>
+  <dialog class="detail-dialog" aria-labelledby="dialog-title"><div class="dialog-top"><span id="dialog-category"></span><button class="dialog-close" aria-label="关闭详情">✕</button></div><div class="dialog-body"><p id="dialog-label" class="dialog-label"></p><h2 id="dialog-title"></h2><p id="dialog-description" class="dialog-description"></p><div id="dialog-content"></div></div><div class="dialog-bottom"><span><img src="./assets/mark.svg" width="26" height="26" alt="">田羽峰 · AI 产品经理</span><button class="dialog-done button button-primary">读完了 <span aria-hidden="true">✓</span></button></div></dialog>
 </body>
 </html>
