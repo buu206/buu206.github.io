@@ -25,14 +25,14 @@ const content = {
   problem: {
     category: 'NOTES & THOUGHTS / 001',
     label: '产品思考 · 示例随笔',
-    title: '从一个问题开始，而不是一个模型',
+    title: 'AI产品经理最该补的一课：评测-生图Agent踩坑记',
     description: '当所有人都在讨论能力，产品经理更该追问什么？',
     body: '<div class="detail-notice">以下为网站的示例文章，供展示阅读体验，后续可替换为田羽峰的原创内容。</div><h3>先找到那个具体的人</h3><p>“我们可以用 AI 做什么”和“这个人现在有什么麻烦”，会把讨论带向不同的地方。前者容易产生一长串功能，后者则要求我们走近一个具体场景。</p><p>他在什么时刻遇到这个问题？现在怎么解决？哪一步最让他困扰？如果没有新产品，他会继续怎么做？这些问题并不新，却决定了后面的技术选择有没有意义。</p><h3>把能力翻译成结果</h3><p>能够总结一段文字，是一种能力；让一个人更快找到需要核对的关键内容，是一种可观察的结果。从能力走向结果，中间还有信息呈现、来源核对、错误处理和实际工作习惯。</p><h3>让一个小实验给出答案</h3><p>一个原型不必证明整套愿景。它可以只回答：使用者愿不愿意把一个真实任务交给它？他能否判断输出是否可用？如果暂时回答不了，继续堆叠功能也不会自动让问题变得清楚。</p>'
   },
   experience: {
     category: 'NOTES & THOUGHTS / 002',
     label: 'AI 体验 · 示例随笔',
-    title: '好的 AI 体验，应该给人留一点余地',
+    title: '我不想当AI的狗，但我已经离不开它了',
     description: '可控感，也许和智能本身一样重要。',
     body: '<div class="detail-notice">以下为网站的示例文章，供展示阅读体验，后续可替换为田羽峰的原创内容。</div><h3>用户需要知道自己在哪里</h3><p>一个回答已经生成，并不意味着任务已经完成。使用者还需要理解它依据了什么、哪些地方有疑问、下一步能够如何修改。</p><h3>把控制权放在够得着的地方</h3><p>生成过程中能否停止？不满意时能否只改一部分？已经执行的动作能否撤销？这些看似普通的交互细节，会影响人愿意把多大的任务交给产品。</p><h3>让不确定性可以被理解</h3><p>一句笼统的免责声明，不如一个能点开的来源或一处明确的待确认内容。产品可以帮助使用者辨别哪些结果值得继续核对，而不是要求他无条件相信，或从头检查一切。</p><p>给人留一点余地，就是让人能够参与、修正，也能够说“这次先到这里”。</p>'
   },
@@ -194,8 +194,8 @@ const searchRecords = [
   {label:'Landscape Sketch · 景观手绘 Skill',subtitle:'开源项目 · 景观可视化',keywords:'knowledge landscape sketch skill 景观 手绘 提示词',icon:'book',detail:'knowledge'},
   {label:'Flow · AI 工作流画布',subtitle:'概念产品 · 工作流',keywords:'workflow flow 产品 流程 自动化',icon:'flow',detail:'workflow'},
   {label:'声间 · 自然语音交互',subtitle:'交互概念 · 语音体验',keywords:'voice 产品 对话 声音',icon:'wave',detail:'voice'},
-  {label:'从一个问题开始，而不是一个模型',subtitle:'公众号文章 · 产品思考',keywords:'problem 文章 需求 场景',icon:'note',detail:'problem'},
-  {label:'好的 AI 体验，应该给人留一点余地',subtitle:'公众号文章 · AI 体验',keywords:'experience 文章 信任 可控',icon:'note',detail:'experience'},
+  {label:'AI产品经理最该补的一课：评测-生图Agent踩坑记',subtitle:'公众号文章 · 产品思考',keywords:'problem 文章 需求 场景',icon:'note',detail:'problem'},
+  {label:'我不想当AI的狗，但我已经离不开它了',subtitle:'公众号文章 · AI 体验',keywords:'experience 文章 信任 可控',icon:'note',detail:'experience'},
   {label:'系统提示词，其实就是写给AI的PRD',subtitle:'公众号文章 · AI 产品',keywords:'small 文章 系统提示词 PRD AI',icon:'note',detail:'small'},
   {label:'Pi Agent',subtitle:'工具索引 · 终端 AI Agent',keywords:'pi agent coding 编程 工具',icon:'code',view:'tool'},
   {label:'GitHub CLI',subtitle:'工具索引 · 命令行与发布',keywords:'github gh 工具 源码',icon:'github',view:'tool'}
